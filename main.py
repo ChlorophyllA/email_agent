@@ -9,6 +9,7 @@ import time
 import hashlib
 import requests
 from pathlib import Path
+from email.header import decode_header
 
 CONFIG_FILE = "config.json"
 REPLIED_RECORD_FILE = "replied_ids.txt"
@@ -66,6 +67,23 @@ def fetch_unread_emails(account):
     except Exception as e:
         print(f"登录 {account['name']} 失败: {e}")
         return []
+
+def decode_email_header(header):
+    """解码邮件头部（如 Subject、From 等）"""
+    if header is None:
+        return ""
+    decoded_parts = []
+    for part, charset in decode_header(header):
+        if isinstance(part, bytes):
+            try:
+                # 尝试用检测到的字符集解码
+                decoded_parts.append(part.decode(charset or 'utf-8', errors='ignore'))
+            except (LookupError, UnicodeDecodeError):
+                # 如果字符集无效，尝试常见编码
+                decoded_parts.append(part.decode('utf-8', errors='ignore'))
+        else:
+            decoded_parts.append(part)
+    return "".join(decoded_parts)
 
 def should_reply(email_msg, config, replied_ids):
     """判断是否应该自动回复"""
@@ -189,7 +207,7 @@ def main():
             continue
         for msg_id, email_msg, msg_num in unreads:
             # 提取信息用于微信推送
-            subject = email_msg.get("Subject", "(无主题)")
+            subject = decode_email_header(email_msg.get("Subject", "(无主题)"))
             from_addr = email.utils.parseaddr(email_msg.get("From", ""))[1]
             date = email_msg.get("Date", "")
 
