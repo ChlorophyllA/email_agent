@@ -16,7 +16,7 @@ inputs:
 
   # --- 资源配额配置 ---
   memorySize: 128  # 内存大小（MB），128MB对邮件监控任务足够[reference:3]
-  timeout: 60      # 超时时间（秒），根据邮件检查、推送等操作设置[reference:4]
+  timeout: 300      # 超时时间（秒），根据邮件检查、推送等操作设置[reference:4]
 
   # --- 环境变量 (⚠️ 关键) ---
   # 在这里注入敏感信息，避免写在代码里[reference:5]
