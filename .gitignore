@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+*.log
+
+# 部署相关
+.serverless/          # Serverless Framework 生成的临时文件
+# package-lock.json     # 如果使用 npm 相关
+
+# 本地配置（如果你有本地 config.json 且包含密码）
+config.json
+replied_ids.txt
