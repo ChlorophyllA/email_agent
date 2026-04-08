@@ -150,16 +150,34 @@ def main():
     # 2. 将读取到的值赋值给 config 字典
     config = {
         "accounts": [
-            {"name": "QQ邮箱", "email": qq_email, "password": qq_auth_code, },
-            {"name": "校园邮箱", "email": campus_email, "password": campus_password, }
+            {
+                "name": "QQ邮箱",
+                "email": qq_email,
+                "password": qq_auth_code,
+                "imap_server": "imap.qq.com",
+                "imap_port": 993,
+                "smtp_server": "smtp.qq.com",
+                "smtp_port": 465
+            },
+            {
+                "name": "校园邮箱",
+                "email": campus_email,
+                "password": campus_password,
+                "imap_server": "imap.shu.edu.cn",   # ⚠️ 这里需要替换成你学校邮箱的实际 IMAP 服务器地址
+                "imap_port": 993,
+                "smtp_server": "smtp.shu.edu.cn",   # ⚠️ 替换成实际的 SMTP 服务器地址
+                "smtp_port": 465
+            }
         ],
         "wechat": {"send_key": send_key},
-        "auto_reply": {"enabled": auto_reply_enabled, 
-                       "subject_keywords": [],            
-                        "sender_whitelist": [],
-                        "reply_subject": "AutoReply：已收到您的邮件", 
-                        "reply_body": "您好，\n\n我已收到您的邮件，会尽快回复。\n\nI've received your email and will get back to you soon.\n\n（此邮件为自动回复）", 
-                        "avoid_loop": True}
+        "auto_reply": {
+            "enabled": auto_reply_enabled,
+            "subject_keywords": [],
+            "sender_whitelist": [],
+            "reply_subject": "AutoReply：已收到您的邮件",
+            "reply_body": "您好，\n\n我已收到您的邮件，会尽快回复。\n\nI've received your email and will get back to you soon.\n\n（此邮件为自动回复）",
+            "avoid_loop": True
+        }
     }
     replied_ids = load_replied_ids()
     send_key = config["wechat"]["send_key"]
