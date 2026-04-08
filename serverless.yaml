@@ -2,15 +2,15 @@
 
 # 1. 组件信息
 component: scf  # (必填) 使用腾讯云 SCF 组件[reference:1]
-name: mail-agent # (必填) 给你的服务实例起个名字
+name: email_agent # (必填) 给你的服务实例起个名字
 
 # 2. 组件输入参数
 inputs:
   # --- 函数基础配置 ---
-  name: mail-agent-function  # 在腾讯云上显示的云函数名
+  name: email_agent  # 在腾讯云上显示的云函数名
   src: ./  # 源代码所在路径，这里代表项目根目录
   handler: main.main_handler # 入口函数，格式：文件.函数名
-  runtime: Python3.9  # 运行时环境，推荐与本地一致[reference:2]
+  runtime: Python3.10  # 运行时环境，推荐与本地一致[reference:2]
   region: ap-guangzhou  # 部署区域，如广州、上海等
   description: 这是一个用于监控邮箱新邮件并发送提醒的云函数 # 函数描述
 
