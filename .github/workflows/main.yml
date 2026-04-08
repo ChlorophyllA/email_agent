@@ -30,3 +30,9 @@ jobs:
           SERVERLESS_PLATFORM_VENDOR: tencent
           TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
           TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
+          QQ_EMAIL: ${{ secrets.QQ_EMAIL }}
+          QQ_AUTH_CODE: ${{ secrets.QQ_AUTH_CODE }}
+          CAMPUS_EMAIL: ${{ secrets.CAMPUS_EMAIL }}
+          CAMPUS_PASSWORD: ${{ secrets.CAMPUS_PASSWORD }}
+          SEND_KEY: ${{ secrets.SEND_KEY }}
+          AUTO_REPLY_ENABLED: ${{ secrets.AUTO_REPLY_ENABLED }}
